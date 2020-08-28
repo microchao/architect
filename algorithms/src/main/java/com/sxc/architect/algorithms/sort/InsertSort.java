@@ -7,11 +7,14 @@ package com.sxc.architect.algorithms.sort;
 public class InsertSort {
     public static void sort(int[] array) {
         for (int i = 1; i < array.length; i++) {
-            int temp = array[0];
-            if(array[i] < temp) {
-                if(array[i] < temp) {
-                    temp = array[i];
-                }
+            int j = i;
+            int temp = array[j];
+            while(j > 0 && array[j-1] > temp) {
+                array[j] = array[j-1];
+                j--;
+            }
+            if(j != i) {
+                array[j] = temp;
             }
         }
     }
