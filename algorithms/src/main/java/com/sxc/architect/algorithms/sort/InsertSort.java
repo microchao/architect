@@ -8,14 +8,12 @@ public class InsertSort {
     public static void sort(int[] array) {
         for (int i = 1; i < array.length; i++) {
             int j = i;
-            int temp = array[j];
-            while(j > 0 && array[j-1] > temp) {
-                array[j] = array[j-1];
+            int temp = array[j]; // 拿到当前需要往前插入的
+            while(j > 0 && array[j-1] > temp) { // 每次判断都是当前需要插入的，依次判断
+                array[j] = array[j-1]; // 比当前需要插入的大的往后挪
                 j--;
             }
-            if(j != i) {
-                array[j] = temp;
-            }
+            array[j] = temp; // 已经空出的位置
         }
     }
 }
