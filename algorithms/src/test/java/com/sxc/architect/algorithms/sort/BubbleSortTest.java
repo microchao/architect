@@ -9,7 +9,7 @@ import java.util.Random;
 public class BubbleSortTest {
 
     public int[] generateArray() {
-        int[] array = new int[1000000];
+        int[] array = new int[100000];
         Random random = new Random();
         for (int i = 0; i < array.length; i++) {
             array[i] = random.nextInt(100);
