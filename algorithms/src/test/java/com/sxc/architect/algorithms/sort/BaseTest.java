@@ -13,7 +13,7 @@ public class BaseTest {
         int[] array = new int[ARRAY_LENGTH];
         Random random = new Random();
         for (int i = 0; i < array.length; i++) {
-            array[i] = random.nextInt(100);
+            array[i] = random.nextInt(10);
         }
         return array;
     }
