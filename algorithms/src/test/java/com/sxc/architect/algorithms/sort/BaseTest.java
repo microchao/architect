@@ -2,11 +2,12 @@ package com.sxc.architect.algorithms.sort;
 
 import org.junit.Assert;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class BaseTest {
 
-    final int ARRAY_LENGTH = 10;
+    protected int ARRAY_LENGTH = 10;
 
     protected int[] generateArray() {
         int[] array = new int[ARRAY_LENGTH];
@@ -18,16 +19,11 @@ public class BaseTest {
     }
 
     protected void verifyOrder(int[] array,int[] sortArray) {
-        for (int i = 0; i < array.length; i++) {
-            boolean result = false;
-            int temp = array[i];
-            for (int j = 0; j < sortArray.length; j++) {
-                if(sortArray[j] == temp){
-                    result = true;
-                    break;
-                }
-            }
-            Assert.assertEquals(result,true);
+        int[] copyArray = copyArray(array);
+        Arrays.sort(copyArray);
+        Assert.assertEquals(copyArray.length, sortArray.length);
+        for (int i = 0; i < copyArray.length; i++) {
+            Assert.assertEquals(copyArray[i] ,sortArray[i]);
         }
     }
 

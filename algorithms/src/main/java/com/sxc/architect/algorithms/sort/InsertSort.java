@@ -4,8 +4,8 @@ package com.sxc.architect.algorithms.sort;
  * 插入排序
  * @DATE 2020/08/27
  */
-public class InsertSort {
-    public static void sort(int[] array) {
+public class InsertSort implements Sort{
+    public void sort(int[] array) {
         for (int i = 1; i < array.length; i++) {
             int j = i;
             int temp = array[j]; // 拿到当前需要往前插入的
@@ -15,5 +15,9 @@ public class InsertSort {
             }
             array[j] = temp; // 已经空出的位置
         }
+    }
+
+    public String getName() {
+        return "插入排序";
     }
 }
