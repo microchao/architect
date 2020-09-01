@@ -18,6 +18,15 @@ public class BaseTest {
         return array;
     }
 
+    protected int[] generateOrderArray() {
+        int[] array = new int[ARRAY_LENGTH];
+        Random random = new Random();
+        for (int i = 0; i < array.length; i++) {
+            array[i] = i;
+        }
+        return array;
+    }
+
     protected void verifyOrder(int[] array,int[] sortArray) {
         int[] copyArray = copyArray(array);
         Arrays.sort(copyArray);
