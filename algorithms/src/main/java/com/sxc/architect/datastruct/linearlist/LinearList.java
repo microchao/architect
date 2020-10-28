@@ -1,4 +1,4 @@
-package com.sxc.architect.algorithms.linearlist;
+package com.sxc.architect.datastruct.linearlist;
 
 /**
  * 将顺序表L的所有元素逆置，要求算法的空间复杂度为O(1)
