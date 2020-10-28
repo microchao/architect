@@ -2,66 +2,40 @@ package com.sxc.architect.algorithms.sort;
 
 /**
  * 快速排序
- * 20200902
+ * 20201028
  */
 public class QuickSort implements Sort{
     public void sort(int[] array) {
-        sort(array,0,array.length-1);
+        quickSort(array,0,array.length-1);
+    }
+
+    private void quickSort(int[] array, int low, int high) {
+        if(low < high) {
+            int pivotpos = partition(array, low, high);
+            quickSort(array,low,pivotpos-1);
+            quickSort(array,pivotpos+1,high);
+        }
     }
 
     public String getName() {
         return "快速排序";
     }
 
-    /* This function takes last element as pivot,
-      places the pivot element at its correct
-      position in sorted array, and places all
-      smaller (smaller than pivot) to left of
-      pivot and all greater elements to right
-      of pivot */
-    int partition(int arr[], int low, int high)
-    {
-        int pivot = arr[high];
-        int i = (low-1); // index of smaller element
-        for (int j=low; j<high; j++)
-        {
-            // If current element is smaller than the pivot
-            if (arr[j] < pivot)
-            {
-                i++;
-
-                // swap arr[i] and arr[j]
-                int temp = arr[i];
-                arr[i] = arr[j];
-                arr[j] = temp;
+    private int partition(int[] a,int low,int high) {
+        int pivot = a[low];
+        while(low < high) {
+            while(low < high && a[high] >= pivot) {
+                /**一直往左移动直到找到比pivot小的元素*/
+                high--;
             }
+            a[low] = a[high];
+            while(low < high && a[low] <= pivot) {
+                /**一直往右移动直到找到比pivot小的元素*/
+                low ++;
+            }
+            a[high] = a[low];
         }
-
-        // swap arr[i+1] and arr[high] (or pivot)
-        int temp = arr[i+1];
-        arr[i+1] = arr[high];
-        arr[high] = temp;
-
-        return i+1;
-    }
-
-
-    /* The main function that implements QuickSort()
-      arr[] --> Array to be sorted,
-      low  --> Starting index,
-      high  --> Ending index */
-    void sort(int arr[], int low, int high)
-    {
-        if (low < high)
-        {
-            /* pi is partitioning index, arr[pi] is
-              now at right place */
-            int pi = partition(arr, low, high);
-
-            // Recursively sort elements before
-            // partition and after partition
-            sort(arr, low, pi-1);
-            sort(arr, pi+1, high);
-        }
+        a[low] = pivot;
+        return low;
     }
 }
