@@ -13,15 +13,15 @@ public class SortTest extends BaseTest{
     @Before
     public void before() {
         sortList = new ArrayList<Sort>();
-        sortList.add(new BubbleSort());
-        sortList.add(new InsertSort());
-        sortList.add(new ShellSort());
+//        sortList.add(new BubbleSort());
+//        sortList.add(new InsertSort());
+//        sortList.add(new ShellSort());
         sortList.add(new QuickSort());
     }
 
     @Test
-    public void sort() {
-        super.ARRAY_LENGTH = 9999;
+    public void sortTest() {
+        super.ARRAY_LENGTH = 9;
         int[] array = super.generateArray();
         for (Sort sort : sortList) {
             int[] sortArray = super.copyArray(array);

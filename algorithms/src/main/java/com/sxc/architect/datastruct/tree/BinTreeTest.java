@@ -1,7 +1,9 @@
 package com.sxc.architect.datastruct.tree;
 
+import java.util.Stack;
+
 /**
- * 二叉树的前序、中序、后序递归遍历
+ * 二叉树的前序、中序、后序递归和非递归遍历
  * @Date 2020/10/28
  */
 public class BinTreeTest {
@@ -17,13 +19,40 @@ public class BinTreeTest {
         b.lchild = d;
         b.rchild = e;
 
-        PreOrder(a);
-        System.out.print(";");
-        InOrder(a);
-        System.out.print(";");
-        PostOrder(a);
-        System.out.print(";");
+        System.out.println("先序遍历:");
+        PreOrder(a);System.out.print(";");
+        PreOrder2(a);System.out.println(";");
+        System.out.println("=============");
+        System.out.println("中序遍历");
+        InOrder(a);System.out.print(";");
+        InOrder2(a);System.out.println(";");
+        System.out.println("=============");
+        System.out.println("后序遍历");
+        PostOrder(a);System.out.println(";");
+        PostOrder2(a);System.out.println(";");
+        System.out.println("=============");
     }
+
+    /**
+     * 先序遍历非递归
+     * @param binTree
+     */
+    static void PreOrder2(BinTree binTree){
+        Stack<BinTree> stack = new Stack<BinTree>();
+        BinTree p = binTree;
+        while(p != null || !stack.empty()) {
+            if(p != null) {
+                visit(p);
+                stack.push(p);
+                p = p.lchild;
+            }
+            else {
+                p = stack.pop();
+                p = p.rchild;
+            }
+        }
+    }
+
 
     static void PreOrder(BinTree binTree){
         if(binTree != null) {
@@ -33,11 +62,44 @@ public class BinTreeTest {
         }
     }
 
+    static void InOrder2(BinTree binTree) {
+        BinTree p = binTree;
+        Stack<BinTree> stack = new Stack<BinTree>();
+        while(p != null || !stack.isEmpty()) {
+            if(p != null) {
+                stack.push(p);
+                p = p.lchild;
+            }
+            else {
+                p = stack.pop();
+                visit(p);
+                p = p.rchild;
+            }
+        }
+    }
+
     static void InOrder(BinTree binTree){
         if(binTree != null) {
             InOrder(binTree.lchild);
             visit(binTree);
             InOrder(binTree.rchild);
+        }
+    }
+
+    static void PostOrder2(BinTree binTree) {
+        Stack<BinTree> stack = new Stack<BinTree>();
+        BinTree p = binTree;
+        while(p != null || !stack.isEmpty()) {
+            if(p != null) {
+                stack.push(p);
+                p = p.lchild;
+            }
+            else {
+                BinTree peek = stack.peek();
+                p = stack.pop();
+                p = p.rchild;
+                visit(p);
+            }
         }
     }
 
