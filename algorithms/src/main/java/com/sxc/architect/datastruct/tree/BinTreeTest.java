@@ -18,6 +18,14 @@ public class BinTreeTest {
         a.rchild = c;
         b.lchild = d;
         b.rchild = e;
+        /**
+         *       a
+         *      / \
+         *     b   c
+         *    / \
+         *   d   e
+         *
+         */
 
         System.out.println("先序遍历:");
         PreOrder(a);System.out.print(";");
@@ -112,7 +120,8 @@ public class BinTreeTest {
     }
 
     static void visit(BinTree binTree) {
-        System.out.print(binTree.data);
+        if(binTree != null)
+            System.out.print(binTree.data);
     }
 }
 class BinTree {
